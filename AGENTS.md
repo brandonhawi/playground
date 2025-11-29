@@ -7,15 +7,16 @@ This document provides guidance for AI agents working in this repository.
 ```
 playground/
 ├── flagrant_fouls/          # Flagrant fouls impact analysis
-│   ├── README.md           # Project overview
-│   ├── .gitignore          # Local file exclusions
-│   ├── flagrant_analysis.ipynb              # Binary outcome analysis
-│   ├── point_differential_analysis.ipynb    # Continuous outcome analysis
-│   └── nba_flagrant_fouls.csv              # Raw data (all seasons)
-├── .vscode/                 # VSCode workspace settings
-├── pyproject.toml          # Project dependencies (uv-managed)
-├── uv.lock                 # Locked dependency versions
-└── .python-version         # Python 3.10 specification
+│   ├── README.md             # Project overview
+│   ├── .gitignore            # Local file exclusions
+│   ├── data_collection.ipynb # NBA API data pulls
+│   ├── point_differential_analysis.ipynb # Linear regression analysis
+│   ├── point_differential_analysis.png    # Saved diagnostics
+│   └── nba_flagrant_fouls.csv # Raw data (all seasons)
+├── .vscode/                   # VSCode workspace settings
+├── pyproject.toml            # Project dependencies (uv-managed)
+├── uv.lock                   # Locked dependency versions
+└── .python-version           # Python 3.10 specification
 ```
 
 ## Project: Flagrant Fouls Analysis
@@ -23,8 +24,8 @@ playground/
 **Goal:** Quantify the impact of flagrant fouls on NBA game outcomes using statistical modeling.
 
 **Current State:**
-- Data: 2023-24 season (~600 games)
-- Analysis: Unadjusted logistic and linear regression
+- Data: entries covering identifiers with prefixes `0022`, `0032`, `0042`, and `0052` (see `flagrant_fouls/nba_flagrant_fouls.csv` for the latest row count)
+- Analysis: `point_differential_analysis.ipynb` fits a linear regression of point differential on flagrant counts
 - Power: Likely insufficient for 80% statistical power
 
 ## Code Style & Standards
@@ -45,15 +46,15 @@ playground/
 - Format: CSV (one row per game)
 - Location: `flagrant_fouls/nba_flagrant_fouls.csv`
 - Schema: `game_id, home_team, away_team, home_flagrants, away_flagrants, home_score, away_score`
-- Never modify schema without updating README and both notebooks
+- Never modify the schema without updating README.md and whichever notebooks consume the file
 
 ## Common Tasks
 
 ### Adding a New Season
-1. Update data collection code to include new season_id
-2. Append new rows to `nba_flagrant_fouls.csv`
-3. Re-run both analysis notebooks
-4. Update README.md with new data size
+1. Update the data collection notebook to request the new season_id
+2. Append the returned rows to `nba_flagrant_fouls.csv`
+3. Re-run `point_differential_analysis.ipynb` so the latest data feeds into the model
+4. Refresh the README(s) and mention the new row count/data span
 
 ### Adding a New Notebook
 1. Follow the structure: Data → Stats → Analysis → Results → Visualization
