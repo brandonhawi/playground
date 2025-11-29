@@ -62,6 +62,27 @@ playground/
 3. Reference the same CSV file
 4. Include power calculation if outcome is binary/continuous
 
+## Git Workflow
+
+This repository follows a **feature-branch development workflow**:
+
+1. **Main branch:** `main` is the stable, production-ready branch
+2. **Feature branches:** Create feature branches off `main` with descriptive names:
+   - Format: `feat/description`, `fix/description`, `docs/description`, etc.
+   - Example: `feat/binary-outcome-analysis`, `fix/data-collection-rate-limit`
+3. **Development process:**
+   - Create a feature branch from `main`
+   - Make commits on the feature branch
+   - Push to origin and create a pull request
+   - Request review and merge to `main` once approved
+4. **Commit messages:**
+   - Use conventional commits: `feat:`, `fix:`, `docs:`, `refactor:`, etc.
+   - Keep messages clear and descriptive
+   - Reference GitHub issues when applicable: `Closes #123`
+5. **Keep branches up to date:**
+   - Before merging, ensure your feature branch is rebased on latest `main`
+   - This keeps the git history clean and linear
+
 ### Working with GitHub Issues
 - Check open issues before starting work
 - Reference issue in commit message: `Closes #123`
