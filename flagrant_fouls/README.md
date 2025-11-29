@@ -85,10 +85,8 @@ See `../pyproject.toml` for the full dependency list. Key packages:
 - `matplotlib`, `seaborn` - Visualization
 - `nba-api` - NBA data retrieval
 
-## Next Steps
+## Contributing
 
-- [ ] Extend data to 5 full seasons (2019-24)
-- [ ] Evaluate statistical power with additional data
-- [ ] Consider adding control variables (home/away, period, game context)
-- [ ] Separate analysis by Flagrant Type 1 vs Type 2
-- [ ] Explore stratified analyses (home vs away, early vs late season)
+See [AGENTS.md](../AGENTS.md) for guidance on this repository's structure and conventions for AI agents.
+
+Open issues for tracking development priorities and tasks.
