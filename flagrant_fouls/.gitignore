@@ -29,6 +29,3 @@ Thumbs.db
 *.png
 *.jpg
 *.jpeg
-
-# Keep CSV data files - they are part of the project
-# !/nba_flagrant_fouls.csv
