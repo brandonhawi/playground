@@ -101,13 +101,31 @@ Managed via `uv` (see `pyproject.toml`):
 
 Install with: `uv sync`
 
+### Running Python Commands
+
+**IMPORTANT:** Always run Python commands through `uv` to ensure correct environment:
+
+```bash
+# Run Python scripts
+uv run python3 script.py
+
+# Run Python commands
+uv run python3 -c "import pandas; print(pandas.__version__)"
+
+# Execute Jupyter notebooks
+uv run jupyter nbconvert --to notebook --execute notebook.ipynb
+```
+
+**DO NOT** use system Python directly (`python3 script.py`) - this will not have access to project dependencies.
+
 ## Important Notes
 
-1. **API Rate Limiting:** NBA API enforces rate limits. Always include 1+ second sleep between requests.
-2. **Data Integrity:** Never hardcode game IDs or season values; parameterize.
-3. **Power Calculations:** Always report statistical power when introducing new analyses.
-4. **Git:** Use `git mv` for file operations to preserve history.
-5. **Commits:** Include `🤖 Generated with Claude Code` footer if created by AI.
+1. **API Rate Limiting:** NBA API enforces rate limits. Always include 0.6 second sleep between requests (600ms).
+2. **Game ID Format:** NBA API requires game IDs as 10-digit strings with leading zeros (e.g., `'0022000605'`). Never convert to integers.
+3. **Data Integrity:** Never hardcode game IDs or season values; parameterize.
+4. **Power Calculations:** Always report statistical power when introducing new analyses.
+5. **Git:** Use `git mv` for file operations to preserve history.
+6. **Commits:** Include `🤖 Generated with Claude Code` footer if created by AI.
 
 ## Questions?
 
