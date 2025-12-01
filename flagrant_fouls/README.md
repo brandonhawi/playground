@@ -28,11 +28,16 @@ home_team        (int)    - Home team ID
 away_team        (int)    - Away team ID
 home_flagrants   (int)    - Number of flagrant fouls committed by home team
 away_flagrants   (int)    - Number of flagrant fouls committed by away team
-home_score       (int)    - Final home team score
-away_score       (int)    - Final away team score
+home_score       (float)  - Final home team score (may contain null values for incomplete data)
+away_score       (float)  - Final away team score (may contain null values for incomplete data)
 ```
 
-**Snapshot:** Games with identifiers prefixed by `0022`, `0032`, `0042`, and `0052` (multiple seasons). Refer to `nba_flagrant_fouls.csv` for the current row count; the file remains one row per game and can be extended without schema changes.
+**Snapshot:** Games with identifiers prefixed by `0012`, `0022`, `0032`, `0042`, and `0052` (multiple seasons). Refer to `nba_flagrant_fouls.csv` for the current row count; the file remains one row per game and can be extended without schema changes.
+
+**Data Quality Notes:**
+- Score columns are stored as `float64` to accommodate missing data (6 games with null score values)
+- Games with no play-by-play data available are logged to `nba_skipped_games.csv` and excluded from the main dataset
+- See `data_collection.ipynb` for details on data handling and edge cases
 
 ## Running the Analysis
 

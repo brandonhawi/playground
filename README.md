@@ -10,7 +10,8 @@ This repository is a lightweight playground for exploring how flagrant fouls cor
 
 ## Data snapshot
 - Dataset stored in `flagrant_fouls/nba_flagrant_fouls.csv`; refer to that file for the current row count and season coverage.
-- Seasons captured: game IDs with leading prefixes `0022`, `0032`, `0042`, and `0052`.
+- Seasons captured: game IDs with leading prefixes `0012`, `0022`, `0032`, `0042`, and `0052`.
+- Games with no play-by-play data are tracked in `flagrant_fouls/nba_skipped_games.csv`.
 - Schema: `game_id, home_team, away_team, home_flagrants, away_flagrants, home_score, away_score`.
 
 ## Getting started
