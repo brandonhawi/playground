@@ -12,7 +12,8 @@ playground/
 │   ├── data_collection.ipynb # NBA API data pulls
 │   ├── point_differential_analysis.ipynb # Linear regression analysis
 │   ├── point_differential_analysis.png    # Saved diagnostics
-│   └── nba_flagrant_fouls.csv # Raw data (all seasons)
+│   ├── nba_flagrant_fouls.csv # Raw data (all seasons)
+│   └── nba_skipped_games.csv  # Games with no play-by-play data
 ├── .vscode/                   # VSCode workspace settings
 ├── pyproject.toml            # Project dependencies (uv-managed)
 ├── uv.lock                   # Locked dependency versions
@@ -24,7 +25,7 @@ playground/
 **Goal:** Quantify the impact of flagrant fouls on NBA game outcomes using statistical modeling.
 
 **Current State:**
-- Data: entries covering identifiers with prefixes `0022`, `0032`, `0042`, and `0052` (see `flagrant_fouls/nba_flagrant_fouls.csv` for the latest row count)
+- Data: entries covering identifiers with prefixes `0012`, `0022`, `0032`, `0042`, and `0052` (see `flagrant_fouls/nba_flagrant_fouls.csv` for the latest row count)
 - Analysis: `point_differential_analysis.ipynb` fits a linear regression of point differential on flagrant counts
 - Power: Likely insufficient for 80% statistical power
 
@@ -47,6 +48,46 @@ playground/
 - Location: `flagrant_fouls/nba_flagrant_fouls.csv`
 - Schema: `game_id, home_team, away_team, home_flagrants, away_flagrants, home_score, away_score`
 - Never modify the schema without updating README.md and whichever notebooks consume the file
+
+## Definition of Done
+
+Before considering any task complete, ensure ALL of the following criteria are met:
+
+1. **Code Quality**
+   - Code follows PEP 8 naming conventions
+   - Functions have docstrings where appropriate
+   - No hardcoded values; use parameterization
+   - No security vulnerabilities introduced
+
+2. **Testing & Validation**
+   - Code runs without errors
+   - Statistical analyses include power calculations
+   - Results are reproducible
+   - Outputs match expected formats
+
+3. **Documentation**
+   - All README files are updated to reflect changes
+   - AGENTS.md is updated if workflow or structure changes
+   - Schema documentation matches actual data structure
+   - New files or notebooks are documented in appropriate README files
+   - Code comments explain non-obvious logic
+
+4. **Data Integrity**
+   - CSV schema remains consistent (or documented if changed)
+   - No data corruption or loss
+   - Data quality issues are documented
+   - File references in documentation are accurate
+
+5. **Git & Version Control**
+   - Commits follow conventional commit format
+   - Commit messages are clear and descriptive
+   - Changes are on appropriate feature branch
+   - No sensitive data (credentials, tokens) committed
+
+6. **Dependencies**
+   - New dependencies added to `pyproject.toml`
+   - `uv.lock` updated if dependencies change
+   - All code runs via `uv run` commands
 
 ## Common Tasks
 
@@ -101,13 +142,31 @@ Managed via `uv` (see `pyproject.toml`):
 
 Install with: `uv sync`
 
+### Running Python Commands
+
+**IMPORTANT:** Always run Python commands through `uv` to ensure correct environment:
+
+```bash
+# Run Python scripts
+uv run python3 script.py
+
+# Run Python commands
+uv run python3 -c "import pandas; print(pandas.__version__)"
+
+# Execute Jupyter notebooks
+uv run jupyter nbconvert --to notebook --execute notebook.ipynb
+```
+
+**DO NOT** use system Python directly (`python3 script.py`) - this will not have access to project dependencies.
+
 ## Important Notes
 
-1. **API Rate Limiting:** NBA API enforces rate limits. Always include 1+ second sleep between requests.
-2. **Data Integrity:** Never hardcode game IDs or season values; parameterize.
-3. **Power Calculations:** Always report statistical power when introducing new analyses.
-4. **Git:** Use `git mv` for file operations to preserve history.
-5. **Commits:** Include `🤖 Generated with Claude Code` footer if created by AI.
+1. **API Rate Limiting:** NBA API enforces rate limits. Always include 0.6 second sleep between requests (600ms).
+2. **Game ID Format:** NBA API requires game IDs as 10-digit strings with leading zeros (e.g., `'0022000605'`). Never convert to integers.
+3. **Data Integrity:** Never hardcode game IDs or season values; parameterize.
+4. **Power Calculations:** Always report statistical power when introducing new analyses.
+5. **Git:** Use `git mv` for file operations to preserve history.
+6. **Commits:** Include `🤖 Generated with Claude Code` footer if created by AI.
 
 ## Questions?
 
