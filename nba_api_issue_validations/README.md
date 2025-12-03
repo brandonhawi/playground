@@ -14,6 +14,12 @@ These notebooks provide executable proof of issue resolutions or reproductions, 
 - **Description**: Validates that `LeagueDashTeamShotLocations` and `LeagueDashPlayerShotLocations` now correctly return DataFrames via `get_data_frames()`
 - **Run in Colab**: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/brandonhawi/playground/blob/main/nba_api_issue_validations/issue_98_get_data_frames_fix.ipynb)
 
+### Issue #602: `BoxScoreTraditionalV3` normalized methods return empty values
+- **Notebook**: [`issue_602_boxscore_normalized_methods.ipynb`](issue_602_boxscore_normalized_methods.ipynb)
+- **Status**: ⚠️ Confirmed Bug
+- **Description**: Validates that `get_normalized_dict()` and `get_normalized_json()` return empty values while other methods work correctly
+- **Run in Colab**: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/brandonhawi/playground/blob/main/nba_api_issue_validations/issue_602_boxscore_normalized_methods.ipynb)
+
 ## How to Use
 
 ### Run Locally
