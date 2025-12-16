@@ -6,15 +6,22 @@ This document provides guidance for AI agents working in this repository.
 
 ```
 playground/
-├── flagrant_fouls/          # Flagrant fouls impact analysis
+├── ballhog/                  # Player selfishness analysis ("ballhog" metrics)
+│   ├── README.md             # Project overview and metric definitions
+│   ├── build_leaderboard.py  # CLI to generate selfishness scores
+│   ├── selfishness_analysis.ipynb # Visualizations and analysis
+│   └── ballhog_metrics.csv   # Raw data (all seasons)
+├── flagrant_fouls/           # Flagrant fouls impact analysis
 │   ├── README.md             # Project overview
-│   ├── .gitignore            # Local file exclusions
 │   ├── data_collection.ipynb # NBA API data pulls
 │   ├── point_differential_analysis.ipynb # Linear regression analysis
-│   ├── point_differential_analysis.png    # Saved diagnostics
 │   ├── nba_flagrant_fouls.csv # Raw data (all seasons)
 │   └── nba_skipped_games.csv  # Games with no play-by-play data
-├── .vscode/                   # VSCode workspace settings
+├── nba_api_issue_validations/ # Notebooks to validate nba-api issues
+│   ├── README.md             # Project overview
+│   ├── issue_*.ipynb         # Notebooks reproducing/validating issues
+│   └── test_*.py             # Python scripts for validation
+├── .vscode/                  # VSCode workspace settings
 ├── pyproject.toml            # Project dependencies (uv-managed)
 ├── uv.lock                   # Locked dependency versions
 └── .python-version           # Python 3.10 specification
@@ -28,6 +35,23 @@ playground/
 - Data: entries covering identifiers with prefixes `0012`, `0022`, `0032`, `0042`, and `0052` (see `flagrant_fouls/nba_flagrant_fouls.csv` for the latest row count)
 - Analysis: `point_differential_analysis.ipynb` fits a linear regression of point differential on flagrant counts
 - Power: Likely insufficient for 80% statistical power
+
+## Project: Ballhog Analysis
+
+**Goal:** Measure player selfishness by analyzing possession dominance versus facilitation for teammates.
+
+**Contents:**
+- `build_leaderboard.py`: CLI tool to compute and rank players by various "selfishness" metrics.
+- `selfishness_analysis.ipynb`: Detailed analysis, visualizations, and distributions of the metrics.
+- `ballhog_metrics.csv`: The output data containing per-player-season selfishness scores.
+
+## Project: NBA API Issue Validations
+
+**Goal:** Provide executable notebooks to reproduce and validate bug fixes for the `nba_api` library.
+
+**Contents:**
+- Each `issue_*.ipynb` notebook corresponds to a specific GitHub issue, demonstrating the bug or validating a fix.
+- Notebooks are designed to be run in Google Colab for easy, zero-setup verification.
 
 ## Code Style & Standards
 
