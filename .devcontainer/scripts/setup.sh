@@ -1,0 +1,1 @@
+curl -LsSf https://astral.sh/uv/0.13.6/install.sh | sh
