@@ -15,7 +15,8 @@
         "ms-toolsai.jupyter",
         "charliermarsh.ruff",
         "-ms-python.autopep8",
-        "-ms-python.vscode-pylance"
+        "-ms-python.vscode-pylance",
+        "DBCode.dbcode"
       ],
       "settings": {
         "notebook.formatOnSave.enabled": true,
