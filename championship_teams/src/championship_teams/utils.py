@@ -1,3 +1,5 @@
+from dataclasses import dataclass
+
 from nba_api.stats.endpoints import TeamGameLog
 from nba_api.stats.static.teams import find_team_by_abbreviation
 from pandas import Series
@@ -17,9 +19,15 @@ def get_team_results_in_time_series(
     return df["W"][::-1]
 
 
+@dataclass(frozen=True)
+class TeamWins:
+    team: TeamAbbreviation
+    wins: int
+
+
 def get_team_wins_in_first_n_games(
     abbreviation: TeamAbbreviation, season: str, n: int
-) -> int:
+) -> TeamWins:
     team_id = find_team_by_abbreviation(abbreviation)["id"]
     df = TeamGameLog(
         team_id=team_id,
@@ -31,4 +39,4 @@ def get_team_wins_in_first_n_games(
         num_wins = int((df["WL"].head(n) == "W").sum())
     else:
         num_wins = int(df.iloc[n - 1]["W"])
-    return num_wins
+    return TeamWins(team=abbreviation, wins=num_wins)
