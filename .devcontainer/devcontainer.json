@@ -33,7 +33,8 @@
   },
   "postCreateCommand": ".devcontainer/scripts/setup.sh",
   "mounts": [
-    "source=claude-code-config,target=/home/vscode/.claude,type=volume"
+    "source=claude-code-config,target=/home/vscode/.claude,type=volume",
+    "source=hf-config,target=/home/vscode/.cache/huggingface,type=volume"
   ],
   "containerEnv": {
     "CLAUDE_CONFIG_DIR": "/home/vscode/.claude"
