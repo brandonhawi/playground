@@ -18,6 +18,7 @@ dependencies = [
 
 [project.scripts]
 championship-teams = "championship_teams:main"
+setup-duckdb = "championship_teams.setup_duckdb:main"
 
 [build-system]
 requires = ["uv_build>=0.13.6,<0.14.0"]

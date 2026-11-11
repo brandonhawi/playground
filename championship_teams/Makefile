@@ -1,4 +1,4 @@
-.PHONY: download-dataset
+.PHONY: setup-duckdb
 
-download-dataset: 
-	hf download brandonhawi/nbadb --repo-type dataset --local-dir ./data
+setup-duckdb:
+	uv run setup-duckdb
