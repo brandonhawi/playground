@@ -8,6 +8,7 @@ DB_PATH = Path(__file__).resolve().parents[2] / "data" / "nba.duckdb"
 
 def main() -> None:
     DB_PATH.parent.mkdir(exist_ok=True)
+    DB_PATH.unlink(missing_ok=True)
     con = duckdb.connect(str(DB_PATH))
     files = con.sql(f"SELECT file FROM glob('{HF_PARQUET}/*.parquet')").fetchall()
     for (url,) in files:
