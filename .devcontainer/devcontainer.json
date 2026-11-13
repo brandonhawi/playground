@@ -34,7 +34,8 @@
   "postCreateCommand": ".devcontainer/scripts/setup.sh",
   "mounts": [
     "source=claude-code-config,target=/home/vscode/.claude,type=volume",
-    "source=hf-config,target=/home/vscode/.cache/huggingface,type=volume"
+    "source=hf-config,target=/home/vscode/.cache/huggingface,type=volume",
+    "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,readonly"
   ],
   "containerEnv": {
     "CLAUDE_CONFIG_DIR": "/home/vscode/.claude"
